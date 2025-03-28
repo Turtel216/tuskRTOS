@@ -1,3 +1,5 @@
+// Implements a Pre-Emptive Scheduler for the ARM Cortex-M
+
 #include <stdint.h>
 
 #define NUM_OF_THREADS 2
@@ -16,7 +18,7 @@ struct task_control_block control_blocks[NUM_OF_THREADS];
 struct task_control_block *current_cb;
 
 // Stack for each task
-int32_t tch_stack[NUM_OF_THREADS][STACKSIZE];
+int32_t tcb_stack[NUM_OF_THREADS][STACKSIZE];
 
 // Handles Systick interrupt and swaps tasks
 __attribute__((naked)) void sys_tick_handler(void) {
@@ -56,12 +58,44 @@ __attribute__((naked)) void sys_tick_handler(void) {
   __asm("MOV    SP, R4");
 
   // Pop registers R4-R11
-  __asm("POP     {R4-R7}");
-  __asm("MOV     R8, R4");
-  __asm("MOV     R9, R5");
-  __asm("MOV     R10, R6");
-  __asm("MOV     R11, R7");
-  __asm("POP     {R4-R7}");
-  __asm("CPSIE   I ");
-  __asm("BX      LR");
+  __asm("POP    {R4-R7}");
+  __asm("MOV    R8, R4");
+  __asm("MOV    R9, R5");
+  __asm("MOV    R10, R6");
+  __asm("MOV    R11, R7");
+  __asm("POP    {R4-R7}");
+  __asm("CPSIE  I ");
+  __asm("BX     LR");
+}
+
+// Initializes the task stack. The stack contains a task context even
+// during the first task context switch.
+void os_init_stack(void) {
+  // Disable interrupts
+  __asm("CPSID    I");
+
+  // Make the control group list circular
+  control_blocks[0].next = &control_blocks[1];
+  control_blocks[1].next = &control_blocks[0];
+
+  // Setup stack for task0
+  control_blocks[0].stack = &tcb_stack[0][STACKSIZE - 16];
+
+  // Notify processor on exception return about the thumb state
+  tcb_stack[0][STACKSIZE - 1] = 0x01000000;
+  // Set stacked PC to the task
+  tcb_stack[0][STACKSIZE - 2] = (int32_t)(Task0); // TODO
+
+  // Setup stack for task1
+  control_blocks[1].stack = &tcb_stack[1][STACKSIZE - 16];
+  // Notify processor on exception return about the thumb state
+  tcb_stack[1][STACKSIZE - 1] = 0x01000000;
+  // Set the stacked PC to point to the task
+  tcb_stack[1][STACKSIZE - 2](int32_t)(Task1); // TODO
+
+  // Make current control block point to task9
+  current_cb = &control_blocks[0];
+
+  // Enable interrupts
+  __asm("CPSIE    I");
 }
