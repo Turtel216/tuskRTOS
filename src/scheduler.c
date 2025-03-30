@@ -135,3 +135,11 @@ __attribute__((naked)) void start_scheduler(void)
 	__asm("CPSIE  I ");
 	__asm("BX     LR");
 }
+
+// Delay a tasks execution my a given number of cycles
+void delay_cycles(unsigned long cycles)
+{
+	while (cycles--) {
+		asm volatile("");
+	}
+}
