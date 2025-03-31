@@ -1,6 +1,7 @@
 // Implements a Pre-Emptive Scheduler for the ARM Cortex-M
 
 #include <stdint.h>
+#include "../include/scheduler.h"
 
 #define NUM_OF_THREADS 2
 #define STACKSIZE 100
