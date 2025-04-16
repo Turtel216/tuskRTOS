@@ -3,9 +3,6 @@
 
 #include <stddef.h>
 
-// Default size of heap memory region
-#define DEFAULT_HEAP_SIZE 4096
-
 /**
  * @brief Initializes the heap memory as a single free block.
  *
@@ -13,9 +10,8 @@
  * to span the entire available heap memory. It must be called before any calls to
  * `kmalloc`, `kfree`, etc.
  *
- * @note Assumes `heap` is a statically allocated memory region.
  */
-void heap_init(size_t size);
+void heap_init(void);
 
 /**
  * @brief Allocates a block of memory of the given size.
