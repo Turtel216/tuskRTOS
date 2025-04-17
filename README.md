@@ -8,7 +8,7 @@ TuskRTOS is a lightweight, pre-emptive Real-Time Operating System (RTOS) designe
 
 ### Features
 - [ ] Pre-emptive scheduling.
-- [x] Support for ARM Cortex-M architectures
+- [x] Support for ARM Cortex-M4(and above) architectures
 - [ ] Configurable task priorities and time slices
 - [ ] Dynamic memory management
 - [ ] Static memory management
