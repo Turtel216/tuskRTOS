@@ -1,10 +1,17 @@
-// Implements a Pre-Emptive Scheduler for the ARM Cortex-M
+/**
+ * @file scheduler.h
+ *
+ * @brief Implements a Pre-Emptive Scheduler for ARM Cortex-M architectures
+*/
 
 #ifndef SCHEDULER_H_
 #define SCHEDULER_H_
 
-// Initializes the task stack. The stack contains a task context even
-// during the first task context switch.
+/**
+ * @brief Initializes the task stack
+ *
+ * @note The stack contains a task contedt even during the first context switch
+*/
 void os_init_stack(void);
 
 #endif // SCHEDULER_H_

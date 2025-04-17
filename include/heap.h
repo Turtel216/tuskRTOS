@@ -1,3 +1,14 @@
+/**
+ * @file heap.h
+ *
+ * @brief Implements a dynamic memory allocator
+ *
+ * This module provides an interface for thread safe
+ * dynamic memory managment.
+ *
+ * @note The default heap size is 4096
+*/
+
 #ifndef HEAP_H_
 #define HEAP_H_
 
