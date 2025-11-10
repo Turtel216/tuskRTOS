@@ -43,6 +43,7 @@ typedef struct tcb {
 /* Public Functions */
 void rtos_init(void);
 int rtos_create_task(void (*task_handler)(void));
+void rtos_start(void);
 void rtos_delay(uint32_t ticks);
 
 void rtos_mutex_init(rtos_mutex_t *mutex);

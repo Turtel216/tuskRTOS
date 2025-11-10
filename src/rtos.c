@@ -1,4 +1,4 @@
-#include "../include/kernel.h"
+#include "../include/rtos.h"
 #include <stddef.h> // For NULL
 
 // --- Kernel Globals ---
