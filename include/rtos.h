@@ -2,6 +2,7 @@
 #define RTOS_H
 
 #include <stdint.h>
+#include "core_cm4.h"
 
 #define MAX_TASKS 5
 #define STACK_SIZE 1024 // 1KB stack per task

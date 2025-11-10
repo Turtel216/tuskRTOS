@@ -12,9 +12,8 @@ OBJCOPY   = $(PREFIX)objcopy
 GDB       = $(PREFIX)gdb
 
 # --- Project Files ---
-# Add your C source files here.
+# Using src/ and include/ directories
 C_SOURCES = src/main.c src/rtos.c
-# Add your assembly source files here.
 ASM_SOURCES = src/rtos_asm.s
 
 OBJECTS   = $(C_SOURCES:.c=.o) $(ASM_SOURCES:.s=.o)
@@ -26,18 +25,22 @@ TARGET_BIN= rtos_project.bin
 # 'netduinoplus2' is a QEMU machine with an STM32F4 (Cortex-M4).
 CPU_FLAGS = -mcpu=cortex-m4 -mthumb -mfloat-abi=soft
 
+# --- THE FIX IS HERE ---
+# Add --specs=nosys.specs to both CFLAGS and LDFLAGS
+SPECS = --specs=nosys.specs
+
 # Compiler flags:
 # -g: Generate debug information.
 # -O0: No optimization, makes debugging easier.
 # -Wall: Turn on all warnings.
-# -I.: Include the current directory for header files.
-CFLAGS    = $(CPU_FLAGS) -g -O0 -Wall -I.
+# -Iinclude: Add the 'include' directory for your headers.
+CFLAGS    = $(CPU_FLAGS) -g -O0 -Wall -Iinclude $(SPECS)
 
 # Linker flags:
 # -nostdlib: We are building a bare-metal application without a standard library.
 # -Tqemu.ld: Use our custom linker script for memory layout.
 # -Wl,-Map: Generate a map file for inspecting memory layout.
-LDFLAGS   = $(CPU_FLAGS) -nostdlib -Tqemu.ld -Wl,-Map=$(TARGET_ELF:.elf=.map)
+LDFLAGS   = $(CPU_FLAGS) -nostdlib -Tqemu.ld -Wl,-Map=$(TARGET_ELF:.elf=.map) $(SPECS)
 
 # --- QEMU Settings ---
 QEMU_MACHINE  = netduinoplus2
@@ -93,7 +96,7 @@ gdb:
 # --- Housekeeping ---
 clean:
 	@echo "[CLEAN] Removing build artifacts."
-	rm -f $(OBJECTS) $(TARGET_ELF) $(TARGET_BIN) *.map
+	rm -f src/*.o $(TARGET_ELF) $(TARGET_BIN) *.map
 
 # Phony targets are commands that don't represent actual files.
 .PHONY: all run debug gdb clean
