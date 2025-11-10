@@ -1,6 +1,5 @@
 #include "../include/rtos.h"
 
-// Assume you have a function to print strings, e.g., uart_puts()
 extern void uart_init(void);
 extern void uart_puts(const char *str);
 
