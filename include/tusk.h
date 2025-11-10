@@ -24,7 +24,7 @@ typedef struct {
 	volatile uint8_t locked;
 	struct tcb *owner;
 	struct tcb *waiting_list; // Simple linked list of waiting tasks
-} rtos_mutex_t;
+} tusk_mutex_t;
 
 /* Semaphore structure */
 typedef struct {
@@ -42,17 +42,17 @@ typedef struct tcb {
 } tcb_t;
 
 /* Public Functions */
-void rtos_init(void);
-int rtos_create_task(void (*task_handler)(void));
-void rtos_start(void);
-void rtos_delay(uint32_t ticks);
+void tusk_init(void);
+int tusk_create_task(void (*task_handler)(void));
+void tusk_start(void);
+void tusk_delay(uint32_t ticks);
 
-void rtos_mutex_init(rtos_mutex_t *mutex);
-void rtos_mutex_acquire(rtos_mutex_t *mutex);
-void rtos_mutex_release(rtos_mutex_t *mutex);
+void tusk_mutex_init(tusk_mutex_t *mutex);
+void tusk_mutex_acquire(tusk_mutex_t *mutex);
+void tusk_mutex_release(tusk_mutex_t *mutex);
 
-void rtos_semaphore_init(rtos_semaphore_t *semaphore, int32_t initial_count);
-void rtos_semaphore_wait(rtos_semaphore_t *semaphore);
-void rtos_semaphore_post(rtos_semaphore_t *semaphore);
+void tusk_semaphore_init(rtos_semaphore_t *semaphore, int32_t initial_count);
+void tusk_semaphore_wait(rtos_semaphore_t *semaphore);
+void tusk_semaphore_post(rtos_semaphore_t *semaphore);
 
 #endif // RTOS_H

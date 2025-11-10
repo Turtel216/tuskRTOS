@@ -11,7 +11,7 @@ OBJCOPY   = $(PREFIX)objcopy
 GDB       = $(PREFIX)gdb
 
 # --- Project Files ---
-C_SOURCES = src/main.c src/rtos.c src/uart.c
+C_SOURCES = src/main.c src/tusk.c src/uart.c
 ASM_SOURCES = src/rtos_asm.s src/startup.s
 
 OBJECTS   = $(C_SOURCES:.c=.o) $(ASM_SOURCES:.s=.o)

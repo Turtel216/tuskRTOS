@@ -1,4 +1,4 @@
-#include "../include/rtos.h"
+#include "../include/tusk.h"
 #include <stddef.h> // For NULL
 
 // --- Kernel Globals ---
@@ -19,7 +19,7 @@ tcb_t *remove_from_wait_list(struct tcb **list);
  */
 extern void SVC_Handler(void);
 extern void PendSV_Handler(void);
-extern void rtos_start(void); // Assembly function to trigger SVC
+extern void tusk_start(void); // Assembly function to trigger SVC
 
 /* SysTick_Handler - The heart of the preemptive scheduler */
 void SysTick_Handler(void)
@@ -42,7 +42,7 @@ void SysTick_Handler(void)
 	*(volatile uint32_t *)0xE000ED04 |= (1 << 28);
 }
 
-void rtos_init(void)
+void tusk_init(void)
 {
 	// Reset all tasks
 	for (int i = 0; i < MAX_TASKS; i++) {
@@ -59,7 +59,7 @@ void rtos_init(void)
 	// SysTick->CTRL = 0x07; // Enable, Use Processor Clock, Enable Interrupt
 }
 
-int rtos_create_task(void (*task_handler)(void))
+int tusk_create_task(void (*task_handler)(void))
 {
 	if (task_count >= MAX_TASKS) {
 		return -1; // Error: Max tasks reached
@@ -114,7 +114,7 @@ void rtos_scheduler(void)
 
 /* --- Synchronization Primitives --- */
 
-void rtos_delay(uint32_t ticks)
+void tusk_delay(uint32_t ticks)
 {
 	if (ticks == 0)
 		return;
@@ -124,14 +124,14 @@ void rtos_delay(uint32_t ticks)
 	*(volatile uint32_t *)0xE000ED04 |= (1 << 28); // Set PendSV
 }
 
-void rtos_mutex_init(rtos_mutex_t *mutex)
+void tusk_mutex_init(tusk_mutex_t *mutex)
 {
 	mutex->locked = MUTEX_UNLOCKED;
 	mutex->owner = NULL;
 	mutex->waiting_list = NULL;
 }
 
-void rtos_mutex_acquire(rtos_mutex_t *mutex)
+void tusk_mutex_acquire(tusk_mutex_t *mutex)
 {
 	__disable_irq(); // Enter critical section
 	if (mutex->locked == MUTEX_LOCKED) {
@@ -149,7 +149,7 @@ void rtos_mutex_acquire(rtos_mutex_t *mutex)
 	}
 }
 
-void rtos_mutex_release(rtos_mutex_t *mutex)
+void tusk_mutex_release(tusk_mutex_t *mutex)
 {
 	__disable_irq(); // Enter critical section
 	if (mutex->owner == current_tcb) {
@@ -168,13 +168,13 @@ void rtos_mutex_release(rtos_mutex_t *mutex)
 	__enable_irq(); // Exit critical section
 }
 
-void rtos_semaphore_init(rtos_semaphore_t *semaphore, int32_t initial_count)
+void tusk_semaphore_init(rtos_semaphore_t *semaphore, int32_t initial_count)
 {
 	semaphore->count = initial_count;
 	semaphore->waiting_list = NULL;
 }
 
-void rtos_semaphore_wait(rtos_semaphore_t *semaphore)
+void tusk_semaphore_wait(rtos_semaphore_t *semaphore)
 {
 	__disable_irq();
 	semaphore->count--;
@@ -190,7 +190,7 @@ void rtos_semaphore_wait(rtos_semaphore_t *semaphore)
 	}
 }
 
-void rtos_semaphore_post(rtos_semaphore_t *semaphore)
+void tusk_semaphore_post(rtos_semaphore_t *semaphore)
 {
 	__disable_irq();
 	semaphore->count++;

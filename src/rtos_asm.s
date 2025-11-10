@@ -2,7 +2,7 @@
     .thumb
     .global SVC_Handler
     .global PendSV_Handler
-    .global rtos_start
+    .global tusk_start
 
     .equ SCB_VTOR, 0xE000ED08
 
@@ -66,8 +66,8 @@ PendSV_Handler:
     mov lr, #0xFFFFFFFD // Special value to return to thread mode using PSP
     bx lr
 
-    .type rtos_start, %function
-rtos_start:
+    .type tusk_start, %function
+tusk_start:
     // Set PendSV and SVC to the lowest priority
     ldr r0, =0xE000ED20  // Address of SHPR3 (System Handler Priority Register 3)
     ldr r1, [r0]         // Read the current priorities
