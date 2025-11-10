@@ -69,14 +69,18 @@ PendSV_Handler:
     .type rtos_start, %function
 rtos_start:
     // Set PendSV and SVC to the lowest priority
-    ldr r0, =0xE000ED20
-    ldr r1, [r0]
-    orr r1, #0xF0F00000 // Set priority for PendSV and SVCall
-    str r1, [r0]
+    ldr r0, =0xE000ED20  // Address of SHPR3 (System Handler Priority Register 3)
+    ldr r1, [r0]         // Read the current priorities
+
+    // The constant 0xF0F00000 cannot be used as an immediate in 'orr'.
+    // So, we load it into a register first, then use the register.
+    ldr r2, =0xF0F00000  // Load the priority value into a temporary register (r2)
+    orr r1, r1, r2       // OR the current priorities with our new values
+
+    str r1, [r0]         // Write the updated priorities back
 
     // Start the first task by triggering the SVC exception
     cpsie i
     svc 0
     // We should never return here
     nop
-
