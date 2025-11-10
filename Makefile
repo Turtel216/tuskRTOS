@@ -27,7 +27,7 @@ LDFLAGS   = $(CPU_FLAGS) -nostdlib -Tqemu.ld -Wl,-Map=$(TARGET_ELF:.elf=.map) $(
 # --- QEMU Settings ---
 QEMU_MACHINE  = netduinoplus2
 QEMU          = qemu-system-arm
-QEMU_FLAGS    = -M $(QEMU_MACHINE) -kernel $(TARGET_ELF) -nographic -serial stdio
+QEMU_FLAGS    = -M $(QEMU_MACHINE) -kernel $(TARGET_ELF) -nographic -serial mon:stdio
 
 # --- Build Rules ---
 all: $(TARGET_BIN)
@@ -53,9 +53,10 @@ run: all
 	@echo "[QEMU] Starting emulation. Press Ctrl+A, then X to exit."
 	$(QEMU) $(QEMU_FLAGS)
 
+# In 'debug' mode, we use a separate port for GDB and leave stdio for the monitor.
 debug: all
 	@echo "[QEMU-GDB] Starting GDB server on tcp::1234. Waiting for connection..."
-	$(QEMU) $(QEMU_FLAGS) -S -gdb tcp::1234
+	$(QEMU) -M $(QEMU_MACHINE) -kernel $(TARGET_ELF) -nographic -S -gdb tcp::1234
 
 gdb:
 	@echo "[GDB] Connecting to QEMU GDB server..."
