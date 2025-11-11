@@ -1,0 +1,40 @@
+\doxysection{rtos\+\_\+semaphore\+\_\+t Struct Reference}
+\hypertarget{structrtos__semaphore__t}{}\label{structrtos__semaphore__t}\index{rtos\_semaphore\_t@{rtos\_semaphore\_t}}
+
+
+A counting semaphore primitive.  
+
+
+
+
+{\ttfamily \#include $<$sync.\+h$>$}
+
+
+
+Collaboration diagram for rtos\+\_\+semaphore\+\_\+t\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=219pt]{structrtos__semaphore__t__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{structrtos__semaphore__t_ae727836f0cd583f551487e1e77a61a83}\label{structrtos__semaphore__t_ae727836f0cd583f551487e1e77a61a83} 
+volatile int32\+\_\+t {\bfseries count}
+\begin{DoxyCompactList}\small\item\em The current count of the semaphore. If the count is positive, a task can take the semaphore without blocking. If it is zero or negative, the task will block. \end{DoxyCompactList}\item 
+\Hypertarget{structrtos__semaphore__t_aff60c09b79f97de94509d467eaf9b4ef}\label{structrtos__semaphore__t_aff60c09b79f97de94509d467eaf9b4ef} 
+struct \mbox{\hyperlink{structtcb}{tcb}} \texorpdfstring{$\ast$}{*} {\bfseries waiting\+\_\+list}
+\begin{DoxyCompactList}\small\item\em A pointer to the head of a linked list of tasks that are blocked waiting for this semaphore. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+A counting semaphore primitive. 
+
+This structure provides a classic counting semaphore mechanism. Semaphores can be used to control access to a resource with multiple instances or for signaling between tasks. 
+
+The documentation for this struct was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+include/\mbox{\hyperlink{sync_8h}{sync.\+h}}\end{DoxyCompactItemize}

@@ -1,0 +1,45 @@
+\doxysection{sync.\+h}
+\hypertarget{sync_8h_source}{}\label{sync_8h_source}\index{include/sync.h@{include/sync.h}}
+\mbox{\hyperlink{sync_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ }
+\DoxyCodeLine{00010\ }
+\DoxyCodeLine{00011\ \textcolor{preprocessor}{\#ifndef\ SYNC\_H\_}}
+\DoxyCodeLine{00012\ \textcolor{preprocessor}{\#define\ SYNC\_H\_}}
+\DoxyCodeLine{00013\ }
+\DoxyCodeLine{00014\ \textcolor{preprocessor}{\#include\ <stdint.h>}}
+\DoxyCodeLine{00015\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{tusk_8h}{tusk.h}}"{}}\ \textcolor{comment}{//\ Include\ for\ tcb\ struct\ definition}}
+\DoxyCodeLine{00016\ }
+\DoxyCodeLine{00023\ \textcolor{preprocessor}{\#define\ MUTEX\_UNLOCKED\ 1}}
+\DoxyCodeLine{00024\ }
+\DoxyCodeLine{00027\ \textcolor{preprocessor}{\#define\ MUTEX\_LOCKED\ 0}\textcolor{preprocessor}{}}
+\DoxyCodeLine{00029\ }
+\DoxyCodeLine{00038\ \textcolor{keyword}{typedef}\ \textcolor{keyword}{struct\ }\{}
+\DoxyCodeLine{00043\ \ \ \ \ \textcolor{keyword}{volatile}\ uint8\_t\ \mbox{\hyperlink{structtusk__mutex__t_ae1d2f183d4bedb049c05490fffe17eac}{locked}};}
+\DoxyCodeLine{00044\ }
+\DoxyCodeLine{00050\ \ \ \ \ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structtcb}{tcb}}\ *\mbox{\hyperlink{structtusk__mutex__t_a56e8d0911f964de80cf52637d6aed7e2}{owner}};}
+\DoxyCodeLine{00051\ }
+\DoxyCodeLine{00056\ \ \ \ \ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structtcb}{tcb}}\ *\mbox{\hyperlink{structtusk__mutex__t_a4a687bfb081d2acc1f6dbea9a5a8a2ff}{waiting\_list}};}
+\DoxyCodeLine{00057\ \}\ \mbox{\hyperlink{structtusk__mutex__t}{tusk\_mutex\_t}};}
+\DoxyCodeLine{00058\ }
+\DoxyCodeLine{00066\ \textcolor{keyword}{typedef}\ \textcolor{keyword}{struct\ }\{}
+\DoxyCodeLine{00072\ \ \ \ \ \textcolor{keyword}{volatile}\ int32\_t\ \mbox{\hyperlink{structrtos__semaphore__t_ae727836f0cd583f551487e1e77a61a83}{count}};}
+\DoxyCodeLine{00073\ }
+\DoxyCodeLine{00078\ \ \ \ \ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structtcb}{tcb}}\ *\mbox{\hyperlink{structrtos__semaphore__t_aff60c09b79f97de94509d467eaf9b4ef}{waiting\_list}};}
+\DoxyCodeLine{00079\ \}\ \mbox{\hyperlink{structrtos__semaphore__t}{rtos\_semaphore\_t}};}
+\DoxyCodeLine{00080\ }
+\DoxyCodeLine{00088\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{sync_8h_aa407288d5d30aa106844ff12f5d0a765}{tusk\_mutex\_init}}(\mbox{\hyperlink{structtusk__mutex__t}{tusk\_mutex\_t}}\ *mutex);}
+\DoxyCodeLine{00089\ }
+\DoxyCodeLine{00099\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{sync_8h_a74efebe3817b390bb963f87b02156ac9}{tusk\_mutex\_acquire}}(\mbox{\hyperlink{structtusk__mutex__t}{tusk\_mutex\_t}}\ *mutex);}
+\DoxyCodeLine{00100\ }
+\DoxyCodeLine{00110\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{sync_8h_a389498599f35468ee0fd028e8370cc24}{tusk\_mutex\_release}}(\mbox{\hyperlink{structtusk__mutex__t}{tusk\_mutex\_t}}\ *mutex);}
+\DoxyCodeLine{00111\ }
+\DoxyCodeLine{00120\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{sync_8h_a80ce7655376a0cf63dcfc91aa6ecc350}{tusk\_semaphore\_init}}(\mbox{\hyperlink{structrtos__semaphore__t}{rtos\_semaphore\_t}}\ *semaphore,\ int32\_t\ initial\_count);}
+\DoxyCodeLine{00121\ }
+\DoxyCodeLine{00131\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{sync_8h_a6acd5dd9d076f238a4c1503c0de6bafd}{tusk\_semaphore\_wait}}(\mbox{\hyperlink{structrtos__semaphore__t}{rtos\_semaphore\_t}}\ *semaphore);}
+\DoxyCodeLine{00132\ }
+\DoxyCodeLine{00142\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{sync_8h_a5ff8e7a4307cf0d632e39186375c57a6}{tusk\_semaphore\_post}}(\mbox{\hyperlink{structrtos__semaphore__t}{rtos\_semaphore\_t}}\ *semaphore);}
+\DoxyCodeLine{00143\ }
+\DoxyCodeLine{00144\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{//\ SYNC\_H\_}}
+
+\end{DoxyCode}

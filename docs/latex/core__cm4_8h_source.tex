@@ -1,0 +1,74 @@
+\doxysection{core\+\_\+cm4.\+h}
+\hypertarget{core__cm4_8h_source}{}\label{core__cm4_8h_source}\index{include/core\_cm4.h@{include/core\_cm4.h}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#ifndef\ \_\_CORE\_CM4\_H\_GENERIC}}
+\DoxyCodeLine{00002\ \textcolor{preprocessor}{\#define\ \_\_CORE\_CM4\_H\_GENERIC}}
+\DoxyCodeLine{00003\ }
+\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#include\ <stdint.h>}}
+\DoxyCodeLine{00005\ }
+\DoxyCodeLine{00006\ \textcolor{preprocessor}{\#ifdef\ \_\_cplusplus}}
+\DoxyCodeLine{00007\ \textcolor{keyword}{extern}\ \textcolor{stringliteral}{"{}C"{}}\ \{}
+\DoxyCodeLine{00008\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00009\ }
+\DoxyCodeLine{00010\ \textcolor{comment}{/*\ IO\ definitions\ */}}
+\DoxyCodeLine{00011\ \textcolor{preprocessor}{\#ifdef\ \_\_cplusplus}}
+\DoxyCodeLine{00012\ \textcolor{preprocessor}{\#define\ \_\_I\ volatile\ }\textcolor{preprocessor}{}}
+\DoxyCodeLine{00013\ \textcolor{preprocessor}{\#else}}
+\DoxyCodeLine{00014\ \textcolor{preprocessor}{\#define\ \_\_I\ volatile\ const\ }\textcolor{preprocessor}{}}
+\DoxyCodeLine{00015\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00016\ \textcolor{preprocessor}{\#define\ \_\_O\ volatile\ }\textcolor{preprocessor}{}}
+\DoxyCodeLine{00017\ \textcolor{preprocessor}{\#define\ \_\_IO\ volatile\ }\textcolor{preprocessor}{}}
+\DoxyCodeLine{00018\ }
+\DoxyCodeLine{00019\ \textcolor{comment}{/*\ Memory\ mapping\ of\ Core\ Hardware\ */}}
+\DoxyCodeLine{00020\ \textcolor{preprocessor}{\#define\ SCS\_BASE\ (0xE000E000UL)\ }\textcolor{preprocessor}{}}
+\DoxyCodeLine{00021\ \textcolor{preprocessor}{\#define\ SysTick\_BASE\ (SCS\_BASE\ +\ 0x0010UL)\ }\textcolor{preprocessor}{}}
+\DoxyCodeLine{00022\ \textcolor{preprocessor}{\#define\ SCB\_BASE\ (SCS\_BASE\ +\ 0x0D00UL)\ }\textcolor{preprocessor}{}}
+\DoxyCodeLine{00023\ }
+\DoxyCodeLine{00024\ \textcolor{keyword}{typedef}\ \textcolor{keyword}{struct\ }\{}
+\DoxyCodeLine{00025\ \ \ \ \ \_\_IO\ uint32\_t}
+\DoxyCodeLine{00026\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structSysTick__Type_af2ad94ac83e5d40fc6e34884bc1bec5f}{CTRL}};\ }
+\DoxyCodeLine{00027\ \ \ \ \ \_\_IO\ uint32\_t}
+\DoxyCodeLine{00028\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structSysTick__Type_ae7bc9d3eac1147f3bba8d73a8395644f}{LOAD}};\ }
+\DoxyCodeLine{00029\ \ \ \ \ \_\_IO\ uint32\_t}
+\DoxyCodeLine{00030\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structSysTick__Type_a0997ff20f11817f8246e8f0edac6f4e4}{VAL}};\ }
+\DoxyCodeLine{00031\ \ \ \ \ \_\_I\ uint32\_t}
+\DoxyCodeLine{00032\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structSysTick__Type_a9c9eda0ea6f6a7c904d2d75a6963e238}{CALIB}};\ }
+\DoxyCodeLine{00033\ \}\ \mbox{\hyperlink{structSysTick__Type}{SysTick\_Type}};}
+\DoxyCodeLine{00034\ }
+\DoxyCodeLine{00035\ \textcolor{keyword}{typedef}\ \textcolor{keyword}{struct\ }\{}
+\DoxyCodeLine{00036\ \ \ \ \ \_\_I\ uint32\_t\ \mbox{\hyperlink{structSCB__Type_afa7a9ee34dfa1da0b60b4525da285032}{CPUID}};\ }
+\DoxyCodeLine{00037\ \ \ \ \ \_\_IO\ uint32\_t}
+\DoxyCodeLine{00038\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structSCB__Type_a3e66570ab689d28aebefa7e84e85dc4a}{ICSR}};\ }
+\DoxyCodeLine{00039\ \ \ \ \ \_\_IO\ uint32\_t}
+\DoxyCodeLine{00040\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structSCB__Type_a0faf96f964931cadfb71cfa54e051f6f}{VTOR}};\ }
+\DoxyCodeLine{00041\ \ \ \ \ \textcolor{comment}{//\ ...\ other\ registers\ ...}}
+\DoxyCodeLine{00042\ \}\ \mbox{\hyperlink{structSCB__Type}{SCB\_Type}};}
+\DoxyCodeLine{00043\ }
+\DoxyCodeLine{00044\ \textcolor{preprocessor}{\#define\ SysTick\ \(\backslash\)}}
+\DoxyCodeLine{00045\ \textcolor{preprocessor}{\ \ \ \ ((SysTick\_Type\ *)SysTick\_BASE)\ }\textcolor{preprocessor}{}}
+\DoxyCodeLine{00046\ \textcolor{preprocessor}{\#define\ SCB\ ((SCB\_Type\ *)SCB\_BASE)\ }\textcolor{preprocessor}{}}
+\DoxyCodeLine{00047\ }
+\DoxyCodeLine{00048\ \textcolor{comment}{/*\ SCB\ Interrupt\ Control\ State\ Register\ Definitions\ */}}
+\DoxyCodeLine{00049\ \textcolor{preprocessor}{\#define\ SCB\_ICSR\_PENDSVSET\_Pos\ 28U\ }\textcolor{preprocessor}{}}
+\DoxyCodeLine{00050\ \textcolor{preprocessor}{\#define\ SCB\_ICSR\_PENDSVSET\_Msk\ \(\backslash\)}}
+\DoxyCodeLine{00051\ \textcolor{preprocessor}{\ \ \ \ (1UL\ <<\ SCB\_ICSR\_PENDSVSET\_Pos)\ }\textcolor{preprocessor}{}}
+\DoxyCodeLine{00052\ }
+\DoxyCodeLine{00053\ \textcolor{comment}{/*\ Intrinsic\ Functions\ */}}
+\DoxyCodeLine{00054\ \_\_attribute\_\_((always\_inline))\ \textcolor{keyword}{static}\ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{void}\ \_\_enable\_irq(\textcolor{keywordtype}{void})}
+\DoxyCodeLine{00055\ \{}
+\DoxyCodeLine{00056\ \ \ \ \ \_\_asm\ \textcolor{keyword}{volatile}(\textcolor{stringliteral}{"{}cpsie\ i"{}}\ :\ :\ :\ \textcolor{stringliteral}{"{}memory"{}});}
+\DoxyCodeLine{00057\ \}}
+\DoxyCodeLine{00058\ }
+\DoxyCodeLine{00059\ \_\_attribute\_\_((always\_inline))\ \textcolor{keyword}{static}\ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{void}\ \_\_disable\_irq(\textcolor{keywordtype}{void})}
+\DoxyCodeLine{00060\ \{}
+\DoxyCodeLine{00061\ \ \ \ \ \_\_asm\ \textcolor{keyword}{volatile}(\textcolor{stringliteral}{"{}cpsid\ i"{}}\ :\ :\ :\ \textcolor{stringliteral}{"{}memory"{}});}
+\DoxyCodeLine{00062\ \}}
+\DoxyCodeLine{00063\ }
+\DoxyCodeLine{00064\ \textcolor{preprocessor}{\#ifdef\ \_\_cplusplus}}
+\DoxyCodeLine{00065\ \}}
+\DoxyCodeLine{00066\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00067\ }
+\DoxyCodeLine{00068\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{/*\ \_\_CORE\_CM4\_H\_GENERIC\ */}\textcolor{preprocessor}{}}
+
+\end{DoxyCode}

@@ -1,0 +1,46 @@
+\doxysection{tusk\+\_\+mutex\+\_\+t Struct Reference}
+\hypertarget{structtusk__mutex__t}{}\label{structtusk__mutex__t}\index{tusk\_mutex\_t@{tusk\_mutex\_t}}
+
+
+A mutual exclusion (mutex) primitive.  
+
+
+
+
+{\ttfamily \#include $<$sync.\+h$>$}
+
+
+
+Collaboration diagram for tusk\+\_\+mutex\+\_\+t\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=209pt]{structtusk__mutex__t__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{structtusk__mutex__t_ae1d2f183d4bedb049c05490fffe17eac}\label{structtusk__mutex__t_ae1d2f183d4bedb049c05490fffe17eac} 
+volatile uint8\+\_\+t {\bfseries locked}
+\begin{DoxyCompactList}\small\item\em The current state of the mutex (MUTEX\+\_\+\+LOCKED or MUTEX\+\_\+\+UNLOCKED). \end{DoxyCompactList}\item 
+\Hypertarget{structtusk__mutex__t_a56e8d0911f964de80cf52637d6aed7e2}\label{structtusk__mutex__t_a56e8d0911f964de80cf52637d6aed7e2} 
+struct \mbox{\hyperlink{structtcb}{tcb}} \texorpdfstring{$\ast$}{*} {\bfseries owner}
+\begin{DoxyCompactList}\small\item\em A pointer to the Task Control Block (TCB) of the task that currently holds the mutex. Is NULL if the mutex is unlocked. \end{DoxyCompactList}\item 
+\Hypertarget{structtusk__mutex__t_a4a687bfb081d2acc1f6dbea9a5a8a2ff}\label{structtusk__mutex__t_a4a687bfb081d2acc1f6dbea9a5a8a2ff} 
+struct \mbox{\hyperlink{structtcb}{tcb}} \texorpdfstring{$\ast$}{*} {\bfseries waiting\+\_\+list}
+\begin{DoxyCompactList}\small\item\em A pointer to the head of a linked list of tasks that are blocked waiting to acquire this mutex. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+A mutual exclusion (mutex) primitive. 
+
+This structure provides a mechanism to ensure that only one task can access a shared resource at a time. Tasks waiting to acquire a locked mutex are
+\begin{DoxyItemize}
+\item \texorpdfstring{$\ast$}{*} placed in a waiting list and blocked until the mutex is released. 
+\end{DoxyItemize}
+
+The documentation for this struct was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+include/\mbox{\hyperlink{sync_8h}{sync.\+h}}\end{DoxyCompactItemize}

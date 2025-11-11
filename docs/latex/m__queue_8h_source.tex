@@ -1,0 +1,42 @@
+\doxysection{m\+\_\+queue.\+h}
+\hypertarget{m__queue_8h_source}{}\label{m__queue_8h_source}\index{include/m\_queue.h@{include/m\_queue.h}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{comment}{/*}}
+\DoxyCodeLine{00014\ }
+\DoxyCodeLine{00015\ \textcolor{preprocessor}{\#ifndef\ M\_QUEUE\_H\_}}
+\DoxyCodeLine{00016\ \textcolor{preprocessor}{\#define\ M\_QUEUE\_H\_}}
+\DoxyCodeLine{00017\ }
+\DoxyCodeLine{00018\ \textcolor{preprocessor}{\#include\ <stdint.h>}}
+\DoxyCodeLine{00019\ \textcolor{preprocessor}{\#include\ <stddef.h>}}
+\DoxyCodeLine{00020\ \textcolor{preprocessor}{\#include\ "{}core\_cm4.h"{}}}
+\DoxyCodeLine{00021\ }
+\DoxyCodeLine{00022\ \textcolor{comment}{//\ -\/-\/-\/\ Configuration\ -\/-\/-\/}}
+\DoxyCodeLine{00023\ }
+\DoxyCodeLine{00028\ \textcolor{preprocessor}{\#define\ QUEUE\_MAX\_MESSAGES\ 16}}
+\DoxyCodeLine{00029\ }
+\DoxyCodeLine{00038\ \textcolor{keyword}{typedef}\ \textcolor{keywordtype}{void}\ *message\_t;}
+\DoxyCodeLine{00039\ }
+\DoxyCodeLine{00040\ \textcolor{comment}{//\ -\/-\/-\/\ Queue\ Structure\ -\/-\/-\/}}
+\DoxyCodeLine{00041\ }
+\DoxyCodeLine{00049\ \textcolor{keyword}{typedef}\ \textcolor{keyword}{struct\ }\{}
+\DoxyCodeLine{00054\ \ \ \ \ message\_t\ \mbox{\hyperlink{structmessage__queue__t_a3d3df1823aa638f3b271b2f5e1826b43}{buffer}}[QUEUE\_MAX\_MESSAGES];}
+\DoxyCodeLine{00055\ }
+\DoxyCodeLine{00060\ \ \ \ \ \textcolor{keyword}{volatile}\ uint32\_t\ \mbox{\hyperlink{structmessage__queue__t_a19dbe9715da4af98d8ee0912d3041ecf}{head}};}
+\DoxyCodeLine{00061\ }
+\DoxyCodeLine{00066\ \ \ \ \ \textcolor{keyword}{volatile}\ uint32\_t\ \mbox{\hyperlink{structmessage__queue__t_a2e94723ca491a23c86a30a4da4ec6880}{tail}};}
+\DoxyCodeLine{00067\ }
+\DoxyCodeLine{00072\ \ \ \ \ \textcolor{keyword}{volatile}\ uint32\_t\ \mbox{\hyperlink{structmessage__queue__t_ab3af5faf0a3556fece6380425daa64e0}{count}};}
+\DoxyCodeLine{00073\ \}\ \mbox{\hyperlink{structmessage__queue__t}{message\_queue\_t}};}
+\DoxyCodeLine{00074\ }
+\DoxyCodeLine{00075\ \textcolor{comment}{//\ -\/-\/-\/\ Function\ Prototypes\ -\/-\/-\/}}
+\DoxyCodeLine{00076\ }
+\DoxyCodeLine{00085\ \textcolor{keywordtype}{void}\ queue\_init(\mbox{\hyperlink{structmessage__queue__t}{message\_queue\_t}}\ *q);}
+\DoxyCodeLine{00086\ }
+\DoxyCodeLine{00099\ int32\_t\ queue\_send(\mbox{\hyperlink{structmessage__queue__t}{message\_queue\_t}}\ *q,\ message\_t\ message);}
+\DoxyCodeLine{00100\ }
+\DoxyCodeLine{00113\ int32\_t\ queue\_receive(\mbox{\hyperlink{structmessage__queue__t}{message\_queue\_t}}\ *q,\ message\_t\ *message);}
+\DoxyCodeLine{00114\ }
+\DoxyCodeLine{00115\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{//\ M\_QUEUE\_H\_}}
+
+\end{DoxyCode}

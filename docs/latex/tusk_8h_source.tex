@@ -1,0 +1,50 @@
+\doxysection{tusk.\+h}
+\hypertarget{tusk_8h_source}{}\label{tusk_8h_source}\index{include/tusk.h@{include/tusk.h}}
+\mbox{\hyperlink{tusk_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ }
+\DoxyCodeLine{00010\ }
+\DoxyCodeLine{00011\ \textcolor{preprocessor}{\#ifndef\ TUSK\_H}}
+\DoxyCodeLine{00012\ \textcolor{preprocessor}{\#define\ TUSK\_H}}
+\DoxyCodeLine{00013\ }
+\DoxyCodeLine{00014\ \textcolor{preprocessor}{\#include\ <stdint.h>}}
+\DoxyCodeLine{00015\ \textcolor{preprocessor}{\#include\ "{}core\_cm4.h"{}}}
+\DoxyCodeLine{00016\ }
+\DoxyCodeLine{00021\ \textcolor{preprocessor}{\#define\ MAX\_TASKS\ 5}}
+\DoxyCodeLine{00022\ }
+\DoxyCodeLine{00027\ \textcolor{preprocessor}{\#define\ STACK\_SIZE\ 1024\ }\textcolor{comment}{//\ 1KB\ stack\ per\ task}}
+\DoxyCodeLine{00028\ }
+\DoxyCodeLine{00035\ \textcolor{preprocessor}{\#define\ TASK\_RUNNING\ 0}}
+\DoxyCodeLine{00036\ }
+\DoxyCodeLine{00039\ \textcolor{preprocessor}{\#define\ TASK\_READY\ 1}}
+\DoxyCodeLine{00040\ }
+\DoxyCodeLine{00043\ \textcolor{preprocessor}{\#define\ TASK\_BLOCKED\ 2}\textcolor{preprocessor}{}}
+\DoxyCodeLine{00045\ }
+\DoxyCodeLine{00046\ \textcolor{comment}{//\ Forward\ declaration\ for\ the\ tcb\ struct.}}
+\DoxyCodeLine{00047\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structtcb}{tcb}};}
+\DoxyCodeLine{00048\ }
+\DoxyCodeLine{00056\ \textcolor{keyword}{typedef}\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structtcb}{tcb}}\ \{}
+\DoxyCodeLine{00062\ \ \ \ \ uint32\_t\ *\mbox{\hyperlink{structtcb_add2978ed929870487ff682ab86779a67}{stack\_pointer}};}
+\DoxyCodeLine{00063\ }
+\DoxyCodeLine{00068\ \ \ \ \ uint8\_t\ \mbox{\hyperlink{structtcb_adcc240ab472033f0b250cee4037f2671}{state}};}
+\DoxyCodeLine{00069\ }
+\DoxyCodeLine{00075\ \ \ \ \ uint32\_t\ \mbox{\hyperlink{structtcb_af6d8b6107462bf0bd72c8f10c9e8b7a2}{wakeup\_time}};}
+\DoxyCodeLine{00076\ }
+\DoxyCodeLine{00082\ \ \ \ \ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structtcb}{tcb}}\ *\mbox{\hyperlink{structtcb_acd068eb08d99f151f1c0a7497ba991a2}{next\_tcb}};}
+\DoxyCodeLine{00083\ }
+\DoxyCodeLine{00088\ \ \ \ \ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structtcb}{tcb}}\ *\mbox{\hyperlink{structtcb_a454c5c9e41c1e55dd0209366b71bbc12}{wait\_next}};}
+\DoxyCodeLine{00089\ \}\ tcb\_t;}
+\DoxyCodeLine{00090\ }
+\DoxyCodeLine{00091\ \textcolor{comment}{/*\ Public\ Functions\ */}}
+\DoxyCodeLine{00092\ }
+\DoxyCodeLine{00099\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{tusk_8h_a16b3cbba9f693ba4f962c179370443c4}{tusk\_init}}(\textcolor{keywordtype}{void});}
+\DoxyCodeLine{00100\ }
+\DoxyCodeLine{00109\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{tusk_8h_a6d13e393456db5e19bc0ca0354c4c766}{tusk\_create\_task}}(\textcolor{keywordtype}{void}\ (*task\_handler)(\textcolor{keywordtype}{void}));}
+\DoxyCodeLine{00110\ }
+\DoxyCodeLine{00117\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{tusk_8h_a6e19ea54794cba0903e453562b962ef2}{tusk\_start}}(\textcolor{keywordtype}{void});}
+\DoxyCodeLine{00118\ }
+\DoxyCodeLine{00128\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{tusk_8h_a794d0e6cb676472e8d4192d77354e5d0}{tusk\_delay}}(uint32\_t\ ticks);}
+\DoxyCodeLine{00129\ }
+\DoxyCodeLine{00130\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{//\ TUSK\_H}}
+
+\end{DoxyCode}

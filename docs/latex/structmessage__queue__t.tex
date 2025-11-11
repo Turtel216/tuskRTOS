@@ -1,0 +1,36 @@
+\doxysection{message\+\_\+queue\+\_\+t Struct Reference}
+\hypertarget{structmessage__queue__t}{}\label{structmessage__queue__t}\index{message\_queue\_t@{message\_queue\_t}}
+
+
+A FIFO message queue structure.  
+
+
+
+
+{\ttfamily \#include $<$m\+\_\+queue.\+h$>$}
+
+\doxysubsubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{structmessage__queue__t_a3d3df1823aa638f3b271b2f5e1826b43}\label{structmessage__queue__t_a3d3df1823aa638f3b271b2f5e1826b43} 
+message\+\_\+t {\bfseries buffer} \mbox{[}QUEUE\+\_\+\+MAX\+\_\+\+MESSAGES\mbox{]}
+\begin{DoxyCompactList}\small\item\em The underlying circular buffer that stores the message pointers. \end{DoxyCompactList}\item 
+\Hypertarget{structmessage__queue__t_a19dbe9715da4af98d8ee0912d3041ecf}\label{structmessage__queue__t_a19dbe9715da4af98d8ee0912d3041ecf} 
+volatile uint32\+\_\+t {\bfseries head}
+\begin{DoxyCompactList}\small\item\em The index where the next message will be added. \end{DoxyCompactList}\item 
+\Hypertarget{structmessage__queue__t_a2e94723ca491a23c86a30a4da4ec6880}\label{structmessage__queue__t_a2e94723ca491a23c86a30a4da4ec6880} 
+volatile uint32\+\_\+t {\bfseries tail}
+\begin{DoxyCompactList}\small\item\em The index from which the next message will be retrieved. \end{DoxyCompactList}\item 
+\Hypertarget{structmessage__queue__t_ab3af5faf0a3556fece6380425daa64e0}\label{structmessage__queue__t_ab3af5faf0a3556fece6380425daa64e0} 
+volatile uint32\+\_\+t {\bfseries count}
+\begin{DoxyCompactList}\small\item\em The current number of messages in the queue. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+A FIFO message queue structure. 
+
+This structure holds the state of a message queue, including the buffer for storing message pointers and indices for managing the queue. 
+
+The documentation for this struct was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+include/m\+\_\+queue.\+h\end{DoxyCompactItemize}

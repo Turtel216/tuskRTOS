@@ -1,0 +1,138 @@
+\doxysection{include/tusk.h File Reference}
+\hypertarget{tusk_8h}{}\label{tusk_8h}\index{include/tusk.h@{include/tusk.h}}
+
+
+Public interface for the Tusk Real-\/\+Time Operating System (RTOS) scheduler.  
+
+
+{\ttfamily \#include $<$stdint.\+h$>$}\newline
+{\ttfamily \#include "{}core\+\_\+cm4.\+h"{}}\newline
+Include dependency graph for tusk.\+h\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=190pt]{tusk_8h__incl}
+\end{center}
+\end{figure}
+This graph shows which files directly or indirectly include this file\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=166pt]{tusk_8h__dep__incl}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{structtcb}{tcb}}
+\begin{DoxyCompactList}\small\item\em Task Control Block (TCB). \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{tusk_8h_aac747bed84189f8cfa509b94d488e622}\label{tusk_8h_aac747bed84189f8cfa509b94d488e622} 
+\#define {\bfseries MAX\+\_\+\+TASKS}~5
+\begin{DoxyCompactList}\small\item\em The maximum number of tasks that can be managed by the scheduler. \end{DoxyCompactList}\item 
+\Hypertarget{tusk_8h_a6423a880df59733d2d9b509c7718d3a9}\label{tusk_8h_a6423a880df59733d2d9b509c7718d3a9} 
+\#define {\bfseries STACK\+\_\+\+SIZE}~1024
+\begin{DoxyCompactList}\small\item\em The size of the stack for each task, in bytes. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\begin{Indent}\textbf{ Task States}\par
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{tusk_8h_a17e3f99a030e5dfefb8f9815600e3fed}\label{tusk_8h_a17e3f99a030e5dfefb8f9815600e3fed} 
+\#define {\bfseries TASK\+\_\+\+RUNNING}~0
+\begin{DoxyCompactList}\small\item\em A task state indicating that the task is currently executing. \end{DoxyCompactList}\item 
+\Hypertarget{tusk_8h_a4b78a26b7a5f1543a2d0d5127fb0754a}\label{tusk_8h_a4b78a26b7a5f1543a2d0d5127fb0754a} 
+\#define {\bfseries TASK\+\_\+\+READY}~1
+\begin{DoxyCompactList}\small\item\em A task state indicating that the task is ready to run but not currently executing. \end{DoxyCompactList}\item 
+\Hypertarget{tusk_8h_ac992e32269ecc3d8a38fd95b70cba372}\label{tusk_8h_ac992e32269ecc3d8a38fd95b70cba372} 
+\#define {\bfseries TASK\+\_\+\+BLOCKED}~2
+\begin{DoxyCompactList}\small\item\em A task state indicating that the task is blocked, waiting for an event (e.\+g., a delay to expire). \end{DoxyCompactList}\end{DoxyCompactItemize}
+\end{Indent}
+\doxysubsubsection*{Typedefs}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{tusk_8h_a3944492c7b81595744d847515bd17782}\label{tusk_8h_a3944492c7b81595744d847515bd17782} 
+typedef struct \mbox{\hyperlink{structtcb}{tcb}} {\bfseries tcb\+\_\+t}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{tusk_8h_a16b3cbba9f693ba4f962c179370443c4}{tusk\+\_\+init}} (void)
+\begin{DoxyCompactList}\small\item\em Initializes the Tusk RTOS scheduler. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{tusk_8h_a6d13e393456db5e19bc0ca0354c4c766}{tusk\+\_\+create\+\_\+task}} (void(\texorpdfstring{$\ast$}{*}task\+\_\+handler)(void))
+\begin{DoxyCompactList}\small\item\em Creates a new task and adds it to the scheduler. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{tusk_8h_a6e19ea54794cba0903e453562b962ef2}{tusk\+\_\+start}} (void)
+\begin{DoxyCompactList}\small\item\em Starts the Tusk RTOS scheduler and begins multitasking. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{tusk_8h_a794d0e6cb676472e8d4192d77354e5d0}{tusk\+\_\+delay}} (uint32\+\_\+t ticks)
+\begin{DoxyCompactList}\small\item\em Delays the calling task for a specified number of system ticks. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Public interface for the Tusk Real-\/\+Time Operating System (RTOS) scheduler. 
+
+\begin{DoxyAuthor}{Author}
+Dimitrios Papakonstantinou
+\end{DoxyAuthor}
+This file defines the public API for interacting with the Tusk RTOS scheduler. It includes definitions for task management, constants for task states, and the structure for the Task Control Block (TCB). 
+
+\label{doc-func-members}
+\Hypertarget{tusk_8h_doc-func-members}
+\doxysubsection{Function Documentation}
+\Hypertarget{tusk_8h_a6d13e393456db5e19bc0ca0354c4c766}\index{tusk.h@{tusk.h}!tusk\_create\_task@{tusk\_create\_task}}
+\index{tusk\_create\_task@{tusk\_create\_task}!tusk.h@{tusk.h}}
+\doxysubsubsection{\texorpdfstring{tusk\_create\_task()}{tusk\_create\_task()}}
+{\footnotesize\ttfamily \label{tusk_8h_a6d13e393456db5e19bc0ca0354c4c766} 
+int tusk\+\_\+create\+\_\+task (\begin{DoxyParamCaption}\item[{void(\texorpdfstring{$\ast$}{*}}]{task\+\_\+handler~}{)(void)}\end{DoxyParamCaption})}
+
+
+
+Creates a new task and adds it to the scheduler. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em task\+\_\+handler} & A pointer to the function that implements the task\textquotesingle{}s behavior. This function should have a {\ttfamily void (\texorpdfstring{$\ast$}{*})(void)} signature and should not return. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+int 0 on success, or a negative value on failure (e.\+g., if MAX\+\_\+\+TASKS is exceeded). 
+\end{DoxyReturn}
+\Hypertarget{tusk_8h_a794d0e6cb676472e8d4192d77354e5d0}\index{tusk.h@{tusk.h}!tusk\_delay@{tusk\_delay}}
+\index{tusk\_delay@{tusk\_delay}!tusk.h@{tusk.h}}
+\doxysubsubsection{\texorpdfstring{tusk\_delay()}{tusk\_delay()}}
+{\footnotesize\ttfamily \label{tusk_8h_a794d0e6cb676472e8d4192d77354e5d0} 
+void tusk\+\_\+delay (\begin{DoxyParamCaption}\item[{uint32\+\_\+t}]{ticks}{}\end{DoxyParamCaption})}
+
+
+
+Delays the calling task for a specified number of system ticks. 
+
+The calling task is placed in the TASK\+\_\+\+BLOCKED state, and the scheduler will run other ready tasks. The task will be moved back to the TASK\+\_\+\+READY state after the specified number of ticks has elapsed.
+
+
+\begin{DoxyParams}{Parameters}
+{\em ticks} & The number of system ticks to delay the task. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{tusk_8h_a16b3cbba9f693ba4f962c179370443c4}\index{tusk.h@{tusk.h}!tusk\_init@{tusk\_init}}
+\index{tusk\_init@{tusk\_init}!tusk.h@{tusk.h}}
+\doxysubsubsection{\texorpdfstring{tusk\_init()}{tusk\_init()}}
+{\footnotesize\ttfamily \label{tusk_8h_a16b3cbba9f693ba4f962c179370443c4} 
+void tusk\+\_\+init (\begin{DoxyParamCaption}\item[{void}]{}{}\end{DoxyParamCaption})}
+
+
+
+Initializes the Tusk RTOS scheduler. 
+
+This function must be called before any other Tusk RTOS function. It sets up the necessary data structures and timers for the scheduler to operate. \Hypertarget{tusk_8h_a6e19ea54794cba0903e453562b962ef2}\index{tusk.h@{tusk.h}!tusk\_start@{tusk\_start}}
+\index{tusk\_start@{tusk\_start}!tusk.h@{tusk.h}}
+\doxysubsubsection{\texorpdfstring{tusk\_start()}{tusk\_start()}}
+{\footnotesize\ttfamily \label{tusk_8h_a6e19ea54794cba0903e453562b962ef2} 
+void tusk\+\_\+start (\begin{DoxyParamCaption}\item[{void}]{}{}\end{DoxyParamCaption})}
+
+
+
+Starts the Tusk RTOS scheduler and begins multitasking. 
+
+This function starts the scheduler and initiates the context switching process. It will start executing the first task created. This function does not return. 

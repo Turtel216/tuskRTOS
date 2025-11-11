@@ -1,0 +1,167 @@
+\doxysection{include/sync.h File Reference}
+\hypertarget{sync_8h}{}\label{sync_8h}\index{include/sync.h@{include/sync.h}}
+
+
+Public interface for Tusk RTOS synchronization primitives.  
+
+
+{\ttfamily \#include $<$stdint.\+h$>$}\newline
+{\ttfamily \#include "{}tusk.\+h"{}}\newline
+Include dependency graph for sync.\+h\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=236pt]{sync_8h__incl}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{structtusk__mutex__t}{tusk\+\_\+mutex\+\_\+t}}
+\begin{DoxyCompactList}\small\item\em A mutual exclusion (mutex) primitive. \end{DoxyCompactList}\item 
+struct \mbox{\hyperlink{structrtos__semaphore__t}{rtos\+\_\+semaphore\+\_\+t}}
+\begin{DoxyCompactList}\small\item\em A counting semaphore primitive. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Macros}
+\begin{Indent}\textbf{ Mutex States}\par
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{sync_8h_ad963991010089c6e899c1ddfb1b4369a}\label{sync_8h_ad963991010089c6e899c1ddfb1b4369a} 
+\#define {\bfseries MUTEX\+\_\+\+UNLOCKED}~1
+\begin{DoxyCompactList}\small\item\em A mutex state indicating that the mutex is not currently held and can be acquired. \end{DoxyCompactList}\item 
+\Hypertarget{sync_8h_a3d27b30a62d1c92d0b419cbca98e65dd}\label{sync_8h_a3d27b30a62d1c92d0b419cbca98e65dd} 
+\#define {\bfseries MUTEX\+\_\+\+LOCKED}~0
+\begin{DoxyCompactList}\small\item\em A mutex state indicating that the mutex is currently held by a task. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\end{Indent}
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{sync_8h_aa407288d5d30aa106844ff12f5d0a765}{tusk\+\_\+mutex\+\_\+init}} (\mbox{\hyperlink{structtusk__mutex__t}{tusk\+\_\+mutex\+\_\+t}} \texorpdfstring{$\ast$}{*}mutex)
+\begin{DoxyCompactList}\small\item\em Initializes a mutex. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{sync_8h_a74efebe3817b390bb963f87b02156ac9}{tusk\+\_\+mutex\+\_\+acquire}} (\mbox{\hyperlink{structtusk__mutex__t}{tusk\+\_\+mutex\+\_\+t}} \texorpdfstring{$\ast$}{*}mutex)
+\begin{DoxyCompactList}\small\item\em Acquires a mutex. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{sync_8h_a389498599f35468ee0fd028e8370cc24}{tusk\+\_\+mutex\+\_\+release}} (\mbox{\hyperlink{structtusk__mutex__t}{tusk\+\_\+mutex\+\_\+t}} \texorpdfstring{$\ast$}{*}mutex)
+\begin{DoxyCompactList}\small\item\em Releases a mutex. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{sync_8h_a80ce7655376a0cf63dcfc91aa6ecc350}{tusk\+\_\+semaphore\+\_\+init}} (\mbox{\hyperlink{structrtos__semaphore__t}{rtos\+\_\+semaphore\+\_\+t}} \texorpdfstring{$\ast$}{*}semaphore, int32\+\_\+t initial\+\_\+count)
+\begin{DoxyCompactList}\small\item\em Initializes a semaphore. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{sync_8h_a6acd5dd9d076f238a4c1503c0de6bafd}{tusk\+\_\+semaphore\+\_\+wait}} (\mbox{\hyperlink{structrtos__semaphore__t}{rtos\+\_\+semaphore\+\_\+t}} \texorpdfstring{$\ast$}{*}semaphore)
+\begin{DoxyCompactList}\small\item\em Waits for (or decrements) a semaphore. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{sync_8h_a5ff8e7a4307cf0d632e39186375c57a6}{tusk\+\_\+semaphore\+\_\+post}} (\mbox{\hyperlink{structrtos__semaphore__t}{rtos\+\_\+semaphore\+\_\+t}} \texorpdfstring{$\ast$}{*}semaphore)
+\begin{DoxyCompactList}\small\item\em Posts to (or increments) a semaphore. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Public interface for Tusk RTOS synchronization primitives. 
+
+\begin{DoxyAuthor}{Author}
+Dimitrios Papakonstantinou
+\end{DoxyAuthor}
+This file defines the public API for mutexes and semaphores in the Tusk RTOS. These primitives are essential for managing access to shared resources and for inter-\/task communication and synchronization. 
+
+\label{doc-func-members}
+\Hypertarget{sync_8h_doc-func-members}
+\doxysubsection{Function Documentation}
+\Hypertarget{sync_8h_a74efebe3817b390bb963f87b02156ac9}\index{sync.h@{sync.h}!tusk\_mutex\_acquire@{tusk\_mutex\_acquire}}
+\index{tusk\_mutex\_acquire@{tusk\_mutex\_acquire}!sync.h@{sync.h}}
+\doxysubsubsection{\texorpdfstring{tusk\_mutex\_acquire()}{tusk\_mutex\_acquire()}}
+{\footnotesize\ttfamily \label{sync_8h_a74efebe3817b390bb963f87b02156ac9} 
+void tusk\+\_\+mutex\+\_\+acquire (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structtusk__mutex__t}{tusk\+\_\+mutex\+\_\+t}} \texorpdfstring{$\ast$}{*}}]{mutex}{}\end{DoxyParamCaption})}
+
+
+
+Acquires a mutex. 
+
+If the mutex is currently unlocked, the calling task acquires it and continues execution. If the mutex is locked by another task, the calling task is blocked and placed on the mutex\textquotesingle{}s waiting list until the mutex is released.
+
+
+\begin{DoxyParams}{Parameters}
+{\em mutex} & A pointer to the {\ttfamily \doxylink{structtusk__mutex__t}{tusk\+\_\+mutex\+\_\+t}} object to be acquired. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{sync_8h_aa407288d5d30aa106844ff12f5d0a765}\index{sync.h@{sync.h}!tusk\_mutex\_init@{tusk\_mutex\_init}}
+\index{tusk\_mutex\_init@{tusk\_mutex\_init}!sync.h@{sync.h}}
+\doxysubsubsection{\texorpdfstring{tusk\_mutex\_init()}{tusk\_mutex\_init()}}
+{\footnotesize\ttfamily \label{sync_8h_aa407288d5d30aa106844ff12f5d0a765} 
+void tusk\+\_\+mutex\+\_\+init (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structtusk__mutex__t}{tusk\+\_\+mutex\+\_\+t}} \texorpdfstring{$\ast$}{*}}]{mutex}{}\end{DoxyParamCaption})}
+
+
+
+Initializes a mutex. 
+
+This function sets the mutex to its initial unlocked state, ready for use.
+
+
+\begin{DoxyParams}{Parameters}
+{\em mutex} & A pointer to the {\ttfamily \doxylink{structtusk__mutex__t}{tusk\+\_\+mutex\+\_\+t}} object to be initialized. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{sync_8h_a389498599f35468ee0fd028e8370cc24}\index{sync.h@{sync.h}!tusk\_mutex\_release@{tusk\_mutex\_release}}
+\index{tusk\_mutex\_release@{tusk\_mutex\_release}!sync.h@{sync.h}}
+\doxysubsubsection{\texorpdfstring{tusk\_mutex\_release()}{tusk\_mutex\_release()}}
+{\footnotesize\ttfamily \label{sync_8h_a389498599f35468ee0fd028e8370cc24} 
+void tusk\+\_\+mutex\+\_\+release (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structtusk__mutex__t}{tusk\+\_\+mutex\+\_\+t}} \texorpdfstring{$\ast$}{*}}]{mutex}{}\end{DoxyParamCaption})}
+
+
+
+Releases a mutex. 
+
+The mutex is unlocked. If there are tasks waiting to acquire the mutex, the highest-\/priority waiting task is unblocked and given the mutex.
+
+
+\begin{DoxyParams}{Parameters}
+{\em mutex} & A pointer to the {\ttfamily \doxylink{structtusk__mutex__t}{tusk\+\_\+mutex\+\_\+t}} object to be released. The mutex must be owned by the calling task. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{sync_8h_a80ce7655376a0cf63dcfc91aa6ecc350}\index{sync.h@{sync.h}!tusk\_semaphore\_init@{tusk\_semaphore\_init}}
+\index{tusk\_semaphore\_init@{tusk\_semaphore\_init}!sync.h@{sync.h}}
+\doxysubsubsection{\texorpdfstring{tusk\_semaphore\_init()}{tusk\_semaphore\_init()}}
+{\footnotesize\ttfamily \label{sync_8h_a80ce7655376a0cf63dcfc91aa6ecc350} 
+void tusk\+\_\+semaphore\+\_\+init (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structrtos__semaphore__t}{rtos\+\_\+semaphore\+\_\+t}} \texorpdfstring{$\ast$}{*}}]{semaphore}{, }\item[{int32\+\_\+t}]{initial\+\_\+count}{}\end{DoxyParamCaption})}
+
+
+
+Initializes a semaphore. 
+
+Sets the semaphore to an initial count.
+
+
+\begin{DoxyParams}{Parameters}
+{\em semaphore} & A pointer to the {\ttfamily \doxylink{structrtos__semaphore__t}{rtos\+\_\+semaphore\+\_\+t}} object to be initialized. \\
+\hline
+{\em initial\+\_\+count} & The initial value for the semaphore\textquotesingle{}s counter. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{sync_8h_a5ff8e7a4307cf0d632e39186375c57a6}\index{sync.h@{sync.h}!tusk\_semaphore\_post@{tusk\_semaphore\_post}}
+\index{tusk\_semaphore\_post@{tusk\_semaphore\_post}!sync.h@{sync.h}}
+\doxysubsubsection{\texorpdfstring{tusk\_semaphore\_post()}{tusk\_semaphore\_post()}}
+{\footnotesize\ttfamily \label{sync_8h_a5ff8e7a4307cf0d632e39186375c57a6} 
+void tusk\+\_\+semaphore\+\_\+post (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structrtos__semaphore__t}{rtos\+\_\+semaphore\+\_\+t}} \texorpdfstring{$\ast$}{*}}]{semaphore}{}\end{DoxyParamCaption})}
+
+
+
+Posts to (or increments) a semaphore. 
+
+Also known as "{}signal"{} or "{}\+V"{} operation. The semaphore\textquotesingle{}s count is incremented. If there are tasks blocked waiting for the semaphore, the highest-\/priority waiting task is unblocked.
+
+
+\begin{DoxyParams}{Parameters}
+{\em semaphore} & A pointer to the {\ttfamily \doxylink{structrtos__semaphore__t}{rtos\+\_\+semaphore\+\_\+t}} object. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{sync_8h_a6acd5dd9d076f238a4c1503c0de6bafd}\index{sync.h@{sync.h}!tusk\_semaphore\_wait@{tusk\_semaphore\_wait}}
+\index{tusk\_semaphore\_wait@{tusk\_semaphore\_wait}!sync.h@{sync.h}}
+\doxysubsubsection{\texorpdfstring{tusk\_semaphore\_wait()}{tusk\_semaphore\_wait()}}
+{\footnotesize\ttfamily \label{sync_8h_a6acd5dd9d076f238a4c1503c0de6bafd} 
+void tusk\+\_\+semaphore\+\_\+wait (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structrtos__semaphore__t}{rtos\+\_\+semaphore\+\_\+t}} \texorpdfstring{$\ast$}{*}}]{semaphore}{}\end{DoxyParamCaption})}
+
+
+
+Waits for (or decrements) a semaphore. 
+
+Also known as "{}pend"{} or "{}\+P"{} operation. If the semaphore\textquotesingle{}s count is greater than zero, it is decremented, and the task continues. If the count is zero, the task is blocked until another task posts to the semaphore.
+
+
+\begin{DoxyParams}{Parameters}
+{\em semaphore} & A pointer to the {\ttfamily \doxylink{structrtos__semaphore__t}{rtos\+\_\+semaphore\+\_\+t}} object. \\
+\hline
+\end{DoxyParams}

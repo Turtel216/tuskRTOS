@@ -1,0 +1,66 @@
+\doxysection{tcb Struct Reference}
+\hypertarget{structtcb}{}\label{structtcb}\index{tcb@{tcb}}
+
+
+Task Control Block (TCB).  
+
+
+
+
+{\ttfamily \#include $<$tusk.\+h$>$}
+
+
+
+Collaboration diagram for tcb\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=183pt]{structtcb__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+uint32\+\_\+t \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{structtcb_add2978ed929870487ff682ab86779a67}{stack\+\_\+pointer}}
+\begin{DoxyCompactList}\small\item\em Pointer to the top of the task\textquotesingle{}s stack. \end{DoxyCompactList}\item 
+\Hypertarget{structtcb_adcc240ab472033f0b250cee4037f2671}\label{structtcb_adcc240ab472033f0b250cee4037f2671} 
+uint8\+\_\+t {\bfseries state}
+\begin{DoxyCompactList}\small\item\em The current state of the task (e.\+g., TASK\+\_\+\+RUNNING, TASK\+\_\+\+READY, TASK\+\_\+\+BLOCKED). \end{DoxyCompactList}\item 
+\Hypertarget{structtcb_af6d8b6107462bf0bd72c8f10c9e8b7a2}\label{structtcb_af6d8b6107462bf0bd72c8f10c9e8b7a2} 
+uint32\+\_\+t {\bfseries wakeup\+\_\+time}
+\begin{DoxyCompactList}\small\item\em The system tick count at which a blocked task should be woken up. This is used for tasks that are delayed via \doxylink{tusk_8h_a794d0e6cb676472e8d4192d77354e5d0}{tusk\+\_\+delay()}. \end{DoxyCompactList}\item 
+\Hypertarget{structtcb_acd068eb08d99f151f1c0a7497ba991a2}\label{structtcb_acd068eb08d99f151f1c0a7497ba991a2} 
+struct \mbox{\hyperlink{structtcb}{tcb}} \texorpdfstring{$\ast$}{*} {\bfseries next\+\_\+tcb}
+\begin{DoxyCompactList}\small\item\em Pointer to the next TCB in the scheduler\textquotesingle{}s list of tasks. This is used to form a circular linked list for round-\/robin scheduling. \end{DoxyCompactList}\item 
+\Hypertarget{structtcb_a454c5c9e41c1e55dd0209366b71bbc12}\label{structtcb_a454c5c9e41c1e55dd0209366b71bbc12} 
+struct \mbox{\hyperlink{structtcb}{tcb}} \texorpdfstring{$\ast$}{*} {\bfseries wait\+\_\+next}
+\begin{DoxyCompactList}\small\item\em Pointer to the next TCB in a waiting list for a resource like a mutex or semaphore. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Task Control Block (TCB). 
+
+This structure holds all the necessary information for managing a task within the RTOS. It includes the task\textquotesingle{}s stack pointer, its current state, and pointers for scheduling. 
+
+\label{doc-variable-members}
+\Hypertarget{structtcb_doc-variable-members}
+\doxysubsection{Member Data Documentation}
+\Hypertarget{structtcb_add2978ed929870487ff682ab86779a67}\index{tcb@{tcb}!stack\_pointer@{stack\_pointer}}
+\index{stack\_pointer@{stack\_pointer}!tcb@{tcb}}
+\doxysubsubsection{\texorpdfstring{stack\_pointer}{stack\_pointer}}
+{\footnotesize\ttfamily \label{structtcb_add2978ed929870487ff682ab86779a67} 
+uint32\+\_\+t\texorpdfstring{$\ast$}{*} tcb\+::stack\+\_\+pointer}
+
+
+
+Pointer to the top of the task\textquotesingle{}s stack. 
+
+\begin{DoxyWarning}{Warning}
+This must be the first element in the struct to ensure correct context switching. 
+\end{DoxyWarning}
+
+
+The documentation for this struct was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+include/\mbox{\hyperlink{tusk_8h}{tusk.\+h}}\end{DoxyCompactItemize}
