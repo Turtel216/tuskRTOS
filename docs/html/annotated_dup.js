@@ -1,5 +1,6 @@
 var annotated_dup =
 [
+    [ "mem_pool_t", "structmem__pool__t.html", null ],
     [ "message_queue_t", "structmessage__queue__t.html", "structmessage__queue__t" ],
     [ "rtos_semaphore_t", "structrtos__semaphore__t.html", "structrtos__semaphore__t" ],
     [ "SCB_Type", "structSCB__Type.html", "structSCB__Type" ],

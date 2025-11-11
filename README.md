@@ -13,7 +13,7 @@ TuskRTOS is a lightweight, pre-emptive Real-Time Operating System (RTOS) designe
 - [x] Syncronization via Mutexs
 - [x] Inter-task communication via semaphores
 - [x] Inter-task communication via message queues 
-- [ ] Fixed-Block Memory Pool allocator
+- [x] Fixed-Block Memory Pool allocator
 
 ## Getting Started
 

@@ -1,0 +1,50 @@
+\doxysection{mem\+\_\+pool\+\_\+t Struct Reference}
+\hypertarget{structmem__pool__t}{}\label{structmem__pool__t}\index{mem\_pool\_t@{mem\_pool\_t}}
+
+
+Memory Pool Control Block Holds all metadata for a memory pool instance.  
+
+
+
+
+{\ttfamily \#include $<$mem.\+h$>$}
+
+
+
+Collaboration diagram for mem\+\_\+pool\+\_\+t\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=209pt]{structmem__pool__t__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{structmem__pool__t_a3d9ad991c30f81efc12ae5a1e3e35624}\label{structmem__pool__t_a3d9ad991c30f81efc12ae5a1e3e35624} 
+uint8\+\_\+t \texorpdfstring{$\ast$}{*} {\bfseries pool\+\_\+start}
+\item 
+\Hypertarget{structmem__pool__t_a2fcc014e028e918f7ed895e64d6e758d}\label{structmem__pool__t_a2fcc014e028e918f7ed895e64d6e758d} 
+void \texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*} {\bfseries next\+\_\+free\+\_\+block}
+\item 
+\Hypertarget{structmem__pool__t_abeee20fa3f279f8b85d65a37d759f74a}\label{structmem__pool__t_abeee20fa3f279f8b85d65a37d759f74a} 
+size\+\_\+t {\bfseries num\+\_\+blocks}
+\item 
+\Hypertarget{structmem__pool__t_af477141330f235eb4f4dc081fece9ecc}\label{structmem__pool__t_af477141330f235eb4f4dc081fece9ecc} 
+size\+\_\+t {\bfseries block\+\_\+size}
+\item 
+\Hypertarget{structmem__pool__t_a44904330ab40e8e3be12adb5a8a9673d}\label{structmem__pool__t_a44904330ab40e8e3be12adb5a8a9673d} 
+size\+\_\+t {\bfseries used\+\_\+blocks}
+\item 
+\Hypertarget{structmem__pool__t_a77ae9cb0107eec3547a0257687f82b26}\label{structmem__pool__t_a77ae9cb0107eec3547a0257687f82b26} 
+\mbox{\hyperlink{structtusk__mutex__t}{tusk\+\_\+mutex\+\_\+t}} {\bfseries mutex}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Memory Pool Control Block Holds all metadata for a memory pool instance. 
+
+The documentation for this struct was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+include/\mbox{\hyperlink{mem_8h}{mem.\+h}}\end{DoxyCompactItemize}

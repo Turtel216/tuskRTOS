@@ -1,0 +1,37 @@
+\doxysection{mem.\+h}
+\hypertarget{mem_8h_source}{}\label{mem_8h_source}\index{include/mem.h@{include/mem.h}}
+\mbox{\hyperlink{mem_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ }
+\DoxyCodeLine{00008\ }
+\DoxyCodeLine{00009\ \textcolor{preprocessor}{\#ifndef\ MEM\_H\_}}
+\DoxyCodeLine{00010\ \textcolor{preprocessor}{\#define\ MEM\_H\_}}
+\DoxyCodeLine{00011\ }
+\DoxyCodeLine{00012\ \textcolor{preprocessor}{\#include\ <stddef.h>}}
+\DoxyCodeLine{00013\ \textcolor{preprocessor}{\#include\ <stdint.h>}}
+\DoxyCodeLine{00014\ \textcolor{preprocessor}{\#include\ <stdbool.h>}}
+\DoxyCodeLine{00015\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{sync_8h}{sync.h}}"{}}}
+\DoxyCodeLine{00016\ }
+\DoxyCodeLine{00021\ \textcolor{keyword}{typedef}\ \textcolor{keyword}{struct\ }\{}
+\DoxyCodeLine{00022\ \ \ \ \ uint8\_t\ *pool\_start;\ \textcolor{comment}{//\ Pointer\ to\ the\ beginning\ of\ the\ underlying\ memory\ buffer}}
+\DoxyCodeLine{00023\ \ \ \ \ \textcolor{keywordtype}{void}\ **next\_free\_block;\ \textcolor{comment}{//\ Pointer\ to\ the\ head\ of\ the\ free-\/list}}
+\DoxyCodeLine{00024\ \ \ \ \ \textcolor{keywordtype}{size\_t}\ num\_blocks;\ \textcolor{comment}{//\ Total\ number\ of\ blocks\ in\ the\ pool}}
+\DoxyCodeLine{00025\ \ \ \ \ \textcolor{keywordtype}{size\_t}\ block\_size;\ \textcolor{comment}{//\ Size\ of\ each\ individual\ block\ in\ bytes}}
+\DoxyCodeLine{00026\ \ \ \ \ \textcolor{keywordtype}{size\_t}\ used\_blocks;\ \textcolor{comment}{//\ Number\ of\ blocks\ currently\ allocated\ (for\ stats)}}
+\DoxyCodeLine{00027\ \ \ \ \ \mbox{\hyperlink{structtusk__mutex__t}{tusk\_mutex\_t}}\ mutex;\ \textcolor{comment}{//\ Mutex\ for\ thread-\/safe\ access}}
+\DoxyCodeLine{00028\ \}\ \mbox{\hyperlink{structmem__pool__t}{mem\_pool\_t}};}
+\DoxyCodeLine{00029\ }
+\DoxyCodeLine{00043\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{mem_8h_af79d915665476d98628e0d0c57ec16c8}{mem\_pool\_init}}(\mbox{\hyperlink{structmem__pool__t}{mem\_pool\_t}}\ *pool,\ \textcolor{keywordtype}{void}\ *pool\_buffer,\ \textcolor{keywordtype}{size\_t}\ pool\_size,}
+\DoxyCodeLine{00044\ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{size\_t}\ block\_size);}
+\DoxyCodeLine{00045\ }
+\DoxyCodeLine{00054\ \textcolor{keywordtype}{void}\ *\mbox{\hyperlink{mem_8h_aa90633362fda57e7f428c483ad98c8b8}{mem\_pool\_alloc}}(\mbox{\hyperlink{structmem__pool__t}{mem\_pool\_t}}\ *pool);}
+\DoxyCodeLine{00055\ }
+\DoxyCodeLine{00066\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{mem_8h_aead16776a25d383b7bbdda443b042ebd}{mem\_pool\_free}}(\mbox{\hyperlink{structmem__pool__t}{mem\_pool\_t}}\ *pool,\ \textcolor{keywordtype}{void}\ *block);}
+\DoxyCodeLine{00067\ }
+\DoxyCodeLine{00073\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{mem_8h_a97394d154ab39f917baeebbfd3ab7ca6}{mem\_pool\_deinit}}(\mbox{\hyperlink{structmem__pool__t}{mem\_pool\_t}}\ *pool);}
+\DoxyCodeLine{00074\ }
+\DoxyCodeLine{00081\ \textcolor{keywordtype}{size\_t}\ \mbox{\hyperlink{mem_8h_a241423c09f6ef5ad02d31380b9993f50}{mem\_pool\_get\_used\_count}}(\mbox{\hyperlink{structmem__pool__t}{mem\_pool\_t}}\ *pool);}
+\DoxyCodeLine{00082\ }
+\DoxyCodeLine{00083\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{//\ MEM\_H\_}}
+
+\end{DoxyCode}

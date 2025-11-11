@@ -1,0 +1,148 @@
+\doxysection{include/mem.h File Reference}
+\hypertarget{mem_8h}{}\label{mem_8h}\index{include/mem.h@{include/mem.h}}
+
+
+Interface for Tusk RTOS memory allocator.  
+
+
+{\ttfamily \#include $<$stddef.\+h$>$}\newline
+{\ttfamily \#include $<$stdint.\+h$>$}\newline
+{\ttfamily \#include $<$stdbool.\+h$>$}\newline
+{\ttfamily \#include "{}sync.\+h"{}}\newline
+Include dependency graph for mem.\+h\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{mem_8h__incl}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{structmem__pool__t}{mem\+\_\+pool\+\_\+t}}
+\begin{DoxyCompactList}\small\item\em Memory Pool Control Block Holds all metadata for a memory pool instance. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+bool \mbox{\hyperlink{mem_8h_af79d915665476d98628e0d0c57ec16c8}{mem\+\_\+pool\+\_\+init}} (\mbox{\hyperlink{structmem__pool__t}{mem\+\_\+pool\+\_\+t}} \texorpdfstring{$\ast$}{*}pool, void \texorpdfstring{$\ast$}{*}pool\+\_\+buffer, size\+\_\+t pool\+\_\+size, size\+\_\+t block\+\_\+size)
+\begin{DoxyCompactList}\small\item\em Initializes a fixed-\/block memory pool. \end{DoxyCompactList}\item 
+void \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{mem_8h_aa90633362fda57e7f428c483ad98c8b8}{mem\+\_\+pool\+\_\+alloc}} (\mbox{\hyperlink{structmem__pool__t}{mem\+\_\+pool\+\_\+t}} \texorpdfstring{$\ast$}{*}pool)
+\begin{DoxyCompactList}\small\item\em Allocates a memory block from the pool. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{mem_8h_aead16776a25d383b7bbdda443b042ebd}{mem\+\_\+pool\+\_\+free}} (\mbox{\hyperlink{structmem__pool__t}{mem\+\_\+pool\+\_\+t}} \texorpdfstring{$\ast$}{*}pool, void \texorpdfstring{$\ast$}{*}block)
+\begin{DoxyCompactList}\small\item\em Frees a previously allocated memory block, returning it to the pool. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{mem_8h_a97394d154ab39f917baeebbfd3ab7ca6}{mem\+\_\+pool\+\_\+deinit}} (\mbox{\hyperlink{structmem__pool__t}{mem\+\_\+pool\+\_\+t}} \texorpdfstring{$\ast$}{*}pool)
+\begin{DoxyCompactList}\small\item\em Deinitializes a memory pool and destroys the associated mutex. \end{DoxyCompactList}\item 
+size\+\_\+t \mbox{\hyperlink{mem_8h_a241423c09f6ef5ad02d31380b9993f50}{mem\+\_\+pool\+\_\+get\+\_\+used\+\_\+count}} (\mbox{\hyperlink{structmem__pool__t}{mem\+\_\+pool\+\_\+t}} \texorpdfstring{$\ast$}{*}pool)
+\begin{DoxyCompactList}\small\item\em Gets the number of used blocks in the pool. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Interface for Tusk RTOS memory allocator. 
+
+\begin{DoxyAuthor}{Author}
+Dimitrios Papakonstantinou
+\end{DoxyAuthor}
+A fixed-\/block memory pool for deterministic allocation times (O(1)) 
+
+\label{doc-func-members}
+\Hypertarget{mem_8h_doc-func-members}
+\doxysubsection{Function Documentation}
+\Hypertarget{mem_8h_aa90633362fda57e7f428c483ad98c8b8}\index{mem.h@{mem.h}!mem\_pool\_alloc@{mem\_pool\_alloc}}
+\index{mem\_pool\_alloc@{mem\_pool\_alloc}!mem.h@{mem.h}}
+\doxysubsubsection{\texorpdfstring{mem\_pool\_alloc()}{mem\_pool\_alloc()}}
+{\footnotesize\ttfamily \label{mem_8h_aa90633362fda57e7f428c483ad98c8b8} 
+void \texorpdfstring{$\ast$}{*} mem\+\_\+pool\+\_\+alloc (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structmem__pool__t}{mem\+\_\+pool\+\_\+t}} \texorpdfstring{$\ast$}{*}}]{pool}{}\end{DoxyParamCaption})}
+
+
+
+Allocates a memory block from the pool. 
+
+This function is thread-\/safe. It will block if the associated mutex is currently held.
+
+
+\begin{DoxyParams}{Parameters}
+{\em pool} & Pointer to the initialized memory pool. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+A pointer to an allocated memory block, or NULL if no blocks are available. 
+\end{DoxyReturn}
+\Hypertarget{mem_8h_a97394d154ab39f917baeebbfd3ab7ca6}\index{mem.h@{mem.h}!mem\_pool\_deinit@{mem\_pool\_deinit}}
+\index{mem\_pool\_deinit@{mem\_pool\_deinit}!mem.h@{mem.h}}
+\doxysubsubsection{\texorpdfstring{mem\_pool\_deinit()}{mem\_pool\_deinit()}}
+{\footnotesize\ttfamily \label{mem_8h_a97394d154ab39f917baeebbfd3ab7ca6} 
+void mem\+\_\+pool\+\_\+deinit (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structmem__pool__t}{mem\+\_\+pool\+\_\+t}} \texorpdfstring{$\ast$}{*}}]{pool}{}\end{DoxyParamCaption})}
+
+
+
+Deinitializes a memory pool and destroys the associated mutex. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em pool} & Pointer to the memory pool to deinitialize. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{mem_8h_aead16776a25d383b7bbdda443b042ebd}\index{mem.h@{mem.h}!mem\_pool\_free@{mem\_pool\_free}}
+\index{mem\_pool\_free@{mem\_pool\_free}!mem.h@{mem.h}}
+\doxysubsubsection{\texorpdfstring{mem\_pool\_free()}{mem\_pool\_free()}}
+{\footnotesize\ttfamily \label{mem_8h_aead16776a25d383b7bbdda443b042ebd} 
+void mem\+\_\+pool\+\_\+free (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structmem__pool__t}{mem\+\_\+pool\+\_\+t}} \texorpdfstring{$\ast$}{*}}]{pool}{, }\item[{void \texorpdfstring{$\ast$}{*}}]{block}{}\end{DoxyParamCaption})}
+
+
+
+Frees a previously allocated memory block, returning it to the pool. 
+
+This function is thread-\/safe.
+
+
+\begin{DoxyParams}{Parameters}
+{\em pool} & Pointer to the initialized memory pool. \\
+\hline
+{\em block} & Pointer to the memory block to be freed. The block must have been previously allocated from this same pool. Behavior is undefined if a foreign pointer is passed. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{mem_8h_a241423c09f6ef5ad02d31380b9993f50}\index{mem.h@{mem.h}!mem\_pool\_get\_used\_count@{mem\_pool\_get\_used\_count}}
+\index{mem\_pool\_get\_used\_count@{mem\_pool\_get\_used\_count}!mem.h@{mem.h}}
+\doxysubsubsection{\texorpdfstring{mem\_pool\_get\_used\_count()}{mem\_pool\_get\_used\_count()}}
+{\footnotesize\ttfamily \label{mem_8h_a241423c09f6ef5ad02d31380b9993f50} 
+size\+\_\+t mem\+\_\+pool\+\_\+get\+\_\+used\+\_\+count (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structmem__pool__t}{mem\+\_\+pool\+\_\+t}} \texorpdfstring{$\ast$}{*}}]{pool}{}\end{DoxyParamCaption})}
+
+
+
+Gets the number of used blocks in the pool. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em pool} & Pointer to the memory pool. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The number of currently allocated blocks. 
+\end{DoxyReturn}
+\Hypertarget{mem_8h_af79d915665476d98628e0d0c57ec16c8}\index{mem.h@{mem.h}!mem\_pool\_init@{mem\_pool\_init}}
+\index{mem\_pool\_init@{mem\_pool\_init}!mem.h@{mem.h}}
+\doxysubsubsection{\texorpdfstring{mem\_pool\_init()}{mem\_pool\_init()}}
+{\footnotesize\ttfamily \label{mem_8h_af79d915665476d98628e0d0c57ec16c8} 
+bool mem\+\_\+pool\+\_\+init (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structmem__pool__t}{mem\+\_\+pool\+\_\+t}} \texorpdfstring{$\ast$}{*}}]{pool}{, }\item[{void \texorpdfstring{$\ast$}{*}}]{pool\+\_\+buffer}{, }\item[{size\+\_\+t}]{pool\+\_\+size}{, }\item[{size\+\_\+t}]{block\+\_\+size}{}\end{DoxyParamCaption})}
+
+
+
+Initializes a fixed-\/block memory pool. 
+
+This function sets up the internal free list and prepares the pool for use. It must be called once before any other pool operations.
+
+
+\begin{DoxyParams}{Parameters}
+{\em pool} & Pointer to the memory pool structure to initialize. \\
+\hline
+{\em pool\+\_\+buffer} & Pointer to a contiguous block of memory to be used for the pool. \\
+\hline
+{\em pool\+\_\+size} & The total size of the pool\+\_\+buffer in bytes. \\
+\hline
+{\em block\+\_\+size} & The desired size for each individual memory block.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+true if initialization was successful, false on failure (e.\+g., pool\+\_\+size is too small). 
+\end{DoxyReturn}
