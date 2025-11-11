@@ -1,4 +1,5 @@
 #include "../include/tusk.h"
+#include "../include/sync.h"
 #include <stddef.h> // For NULL
 
 // --- Kernel Globals ---

@@ -1,4 +1,5 @@
 #include "../include/tusk.h"
+#include "../include/sync.h"
 #include "../include/serial.h"
 
 tusk_mutex_t uart_mutex;
